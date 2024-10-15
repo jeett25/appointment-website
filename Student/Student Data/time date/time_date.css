@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #00c6ff, #0072ff);
-    --secondary-gradient: linear-gradient(135deg, #ff6b6b, #ff8e53);
-    --background-gradient: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    --primary-gradient: linear-gradient(135deg, #8E44AD, #6C3483);
+    --secondary-gradient: linear-gradient(135deg, #95A5A6, #7F8C8D);
+    --background-gradient: linear-gradient(135deg, #ECEFF1 0%, #D1C4E9 100%);
+    --text-color: #34495E;
+    --heading-color: #6C3483;
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --scrollbar-bg: linear-gradient(to right, #D1C4E9, #B39DDB);
+    --scrollbar-thumb: #8E44AD;
+    --active-button: linear-gradient(135deg, #95A5A6, #7F8C8D);
 }
 
 body {
@@ -15,12 +21,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: var(--text-color);
 }
 
 .container {
     max-width: 800px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: var(--card-bg);
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -29,22 +36,21 @@ body {
 h1 {
     text-align: center;
     margin-bottom: 30px;
-    color: #333;
+    color: var(--heading-color);
     font-size: 2.5em;
     font-weight: 600;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Scrollable Date Bar */
 .date-scrollbar {
     display: flex;
     overflow-x: auto;
     padding: 15px 0;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    background: var(--scrollbar-bg);
     border-radius: 15px;
     scrollbar-width: thin;
-    scrollbar-color: #007bff #e0eafc;
+    scrollbar-color: var(--scrollbar-thumb) #D1C4E9;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
 }
 
@@ -53,12 +59,12 @@ h1 {
 }
 
 .date-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #007bff;
+    background-color: var(--scrollbar-thumb);
     border-radius: 4px;
 }
 
 .date-scrollbar::-webkit-scrollbar-track {
-    background-color: #e0eafc;
+    background-color: #D1C4E9;
 }
 
 .date-button {
@@ -89,7 +95,7 @@ h1 {
 }
 
 .date-button.active {
-    background: var(--secondary-gradient);
+    background: var(--active-button);
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
@@ -101,8 +107,8 @@ h1 {
 h2 {
     margin-top: 25px;
     font-size: 1.4em;
-    color: #333;
-    border-bottom: 2px solid #007bff;
+    color: var(--heading-color);
+    border-bottom: 2px solid #8E44AD;
     padding-bottom: 10px;
     text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
 }
@@ -155,7 +161,7 @@ h2 {
 }
 
 .date-button.orange {
-    background: linear-gradient(135deg, #ff8c00, #ff6347);
+    background: var(--active-button);
     transform: translateY(-4px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }

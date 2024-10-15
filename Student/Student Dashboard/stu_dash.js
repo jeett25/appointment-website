@@ -9,6 +9,11 @@ function toggleOverlay(overlayId) {
     overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
 }
 
+// Add this new function to handle the profile overlay
+function toggleProfileOverlay() {
+    toggleOverlay('profile-overlay');
+}
+
 function submitCancellation() {
     const reason = document.getElementById('cancel-reason').value;
     if (reason.trim()) {
@@ -24,7 +29,6 @@ function submitCancellation() {
 function updateAppointmentStatus() {
     const statusDiv = document.getElementById('appointment-status');
     statusDiv.innerHTML = '';
-
     if (appointmentBooked) {
         const confirmedAppointment = JSON.parse(localStorage.getItem('confirmedAppointment'));
         if (confirmedAppointment) {
@@ -50,7 +54,6 @@ function showNotification(message, type = 'success') {
     notification.textContent = message;
     notification.className = `notification ${type}`;
     document.body.appendChild(notification);
-
     setTimeout(() => {
         notification.classList.add('show');
         setTimeout(() => {
@@ -80,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateAppointmentsTable();
 });
 
-// Check for new appointment data in localStorage
 window.addEventListener('storage', function(e) {
     if (e.key === 'newAppointment') {
         const newAppointment = JSON.parse(e.newValue);
@@ -93,7 +95,6 @@ window.addEventListener('storage', function(e) {
     }
 });
 
-// Check for confirmed appointment in localStorage when the dashboard loads
 document.addEventListener('DOMContentLoaded', () => {
     const confirmedAppointment = JSON.parse(localStorage.getItem('confirmedAppointment'));
     if (confirmedAppointment) {
