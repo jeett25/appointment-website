@@ -26,10 +26,17 @@ function updateAppointmentStatus() {
     statusDiv.innerHTML = '';
 
     if (appointmentBooked) {
-        statusDiv.innerHTML = `
-            <p>You have an appointment booked for <strong>${appointments[0].date}</strong>.</p>
-            <button onclick="toggleOverlay('cancel-overlay')">Cancel Appointment</button>
-        `;
+        const confirmedAppointment = JSON.parse(localStorage.getItem('confirmedAppointment'));
+        if (confirmedAppointment) {
+            statusDiv.innerHTML = `
+                <p>You have an appointment booked for <strong>${confirmedAppointment.date}</strong> at <strong>${confirmedAppointment.time}</strong>.</p>
+                <p><strong>Symptoms:</strong> ${confirmedAppointment.symptoms}</p>
+                <p><strong>Age:</strong> ${confirmedAppointment.age}</p>
+                <p><strong>Weight:</strong> ${confirmedAppointment.weight}</p>
+                <p><strong>Temperature:</strong> ${confirmedAppointment.temperature}</p>
+                <button onclick="toggleOverlay('cancel-overlay')">Cancel Appointment</button>
+            `;
+        }
     } else {
         statusDiv.innerHTML = `
             <p>You have no appointments booked.</p>
@@ -83,5 +90,14 @@ window.addEventListener('storage', function(e) {
         updateAppointmentsTable();
         showNotification('New appointment booked successfully', 'success');
         localStorage.removeItem('newAppointment');
+    }
+});
+
+// Check for confirmed appointment in localStorage when the dashboard loads
+document.addEventListener('DOMContentLoaded', () => {
+    const confirmedAppointment = JSON.parse(localStorage.getItem('confirmedAppointment'));
+    if (confirmedAppointment) {
+        appointmentBooked = true;
+        updateAppointmentStatus();
     }
 });
