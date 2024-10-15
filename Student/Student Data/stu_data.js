@@ -3,12 +3,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const symptomsTextarea = document.getElementById('symptoms');
 
     form.addEventListener('submit', function(event) {
-        event.preventDefault();
+        event.preventDefault();  // Prevent the default form submission
+
         const age = document.getElementById('age').value;
         const weight = document.getElementById('weight').value;
         const temperature = document.getElementById('temperature').value;
         const symptoms = symptomsTextarea.value;
 
+        // Validation
         if (age < 1 || age > 120) {
             showError('Please enter a valid age between 1 and 120.');
             return;
@@ -24,10 +26,22 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const appointmentData = { age, weight, temperature, symptoms };
-        console.log('Appointment Data:', appointmentData);
-        showSuccess('Appointment booked successfully! We will contact you shortly.');
-        form.reset();
+        const today = new Date();
+        const appointmentDate = today.toISOString().split('T')[0];  // Store current date as appointment date
+
+        const appointmentData = {
+            age: age,
+            weight: weight,
+            temperature: temperature,
+            symptoms: symptoms,
+            date: appointmentDate
+        };
+
+        // Store the appointment details in localStorage
+        localStorage.setItem('newAppointment', JSON.stringify(appointmentData));
+
+        // Redirect to the doctor slots page
+        window.location.href = '../View DocSlots/doc_slot.html';
     });
 
     symptomsTextarea.addEventListener('input', function() {
@@ -40,43 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
         errorDiv.className = 'error-message';
         errorDiv.textContent = message;
         form.insertBefore(errorDiv, form.firstChild);
-        setTimeout(() => errorDiv.remove(), 3000);
+        setTimeout(() => errorDiv.remove(), 3000);  // Automatically remove error message after 3 seconds
     }
-
-    function showSuccess(message) {
-        const successDiv = document.createElement('div');
-        successDiv.className = 'success-message';
-        successDiv.textContent = message;
-        form.insertBefore(successDiv, form.firstChild);
-        setTimeout(() => successDiv.remove(), 3000);
-    }
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('appointmentForm');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const age = document.getElementById('age').value;
-        const weight = document.getElementById('weight').value;
-        const temperature = document.getElementById('temperature').value;
-        const symptoms = document.getElementById('symptoms').value;
-
-        const today = new Date();
-        const appointmentDate = today.toISOString().split('T')[0];
-
-        const newAppointment = {
-            date: appointmentDate,
-            symptoms: symptoms,
-            age: age,
-            weight: weight,
-            temperature: temperature
-        };
-
-        // Store the new appointment in localStorage
-        localStorage.setItem('newAppointment', JSON.stringify(newAppointment));
-
-        // Redirect back to the dashboard
-        window.location.href = '../Student Dashboard/stu_dash.html';
-    });
 });
