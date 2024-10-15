@@ -51,3 +51,32 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => successDiv.remove(), 3000);
     }
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('appointmentForm');
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const age = document.getElementById('age').value;
+        const weight = document.getElementById('weight').value;
+        const temperature = document.getElementById('temperature').value;
+        const symptoms = document.getElementById('symptoms').value;
+
+        const today = new Date();
+        const appointmentDate = today.toISOString().split('T')[0];
+
+        const newAppointment = {
+            date: appointmentDate,
+            symptoms: symptoms,
+            age: age,
+            weight: weight,
+            temperature: temperature
+        };
+
+        // Store the new appointment in localStorage
+        localStorage.setItem('newAppointment', JSON.stringify(newAppointment));
+
+        // Redirect back to the dashboard
+        window.location.href = '../Student Dashboard/stu_dash.html';
+    });
+});

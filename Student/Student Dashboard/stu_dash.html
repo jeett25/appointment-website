@@ -25,7 +25,7 @@
     <main>
         <section class="block">
             <h3>Prior Appointments</h3>
-            <table>
+            <table id="appointmentsTable">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -33,18 +33,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>2024-08-10</td>
-                        <td>Fever, Cough</td>
-                    </tr>
-                    <tr>
-                        <td>2024-07-22</td>
-                        <td>Headache, Dizziness</td>
-                    </tr>
+                    <!-- Appointments will be dynamically added here -->
                 </tbody>
             </table>
         </section>
-
         <section class="block">
             <h3>Your Current Status</h3>
             <div id="appointment-status">
@@ -62,6 +54,7 @@
             <button onclick="submitCancellation()">Submit</button>
             <button onclick="toggleCancelOverlay()">Close</button>
         </div>
+      
     </div>
 
     <script src="stu_dash.js"></script>

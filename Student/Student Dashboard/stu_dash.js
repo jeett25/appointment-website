@@ -1,53 +1,87 @@
-let appointmentBooked = false;  // Change this to true to simulate booked appointment
+let appointmentBooked = false;
+let appointments = [
+    { date: '2024-08-10', symptoms: 'Fever, Cough' },
+    { date: '2024-07-22', symptoms: 'Headache, Dizziness' }
+];
 
-// Toggle profile overlay
-function toggleProfileOverlay() {
-    const profileOverlay = document.getElementById('profile-overlay');
-    profileOverlay.style.display = profileOverlay.style.display === 'flex' ? 'none' : 'flex';
+function toggleOverlay(overlayId) {
+    const overlay = document.getElementById(overlayId);
+    overlay.style.display = overlay.style.display === 'flex' ? 'none' : 'flex';
 }
 
-// Toggle cancel appointment overlay
-function toggleCancelOverlay() {
-    const cancelOverlay = document.getElementById('cancel-overlay');
-    cancelOverlay.style.display = cancelOverlay.style.display === 'flex' ? 'none' : 'flex';
-}
-
-// Submit cancellation reason
 function submitCancellation() {
     const reason = document.getElementById('cancel-reason').value;
     if (reason.trim()) {
-        alert('Appointment cancelled for reason: ' + reason);
         appointmentBooked = false;
         updateAppointmentStatus();
-        toggleCancelOverlay();
+        toggleOverlay('cancel-overlay');
+        showNotification('Appointment cancelled successfully', 'success');
     } else {
-        alert('Please provide a cancellation reason.');
+        showNotification('Please provide a cancellation reason', 'error');
     }
 }
 
-// Update appointment status dynamically
 function updateAppointmentStatus() {
     const statusDiv = document.getElementById('appointment-status');
     statusDiv.innerHTML = '';
 
     if (appointmentBooked) {
         statusDiv.innerHTML = `
-            <p>You have an appointment booked on <strong>2024-09-15</strong>.</p>
-            <button onclick="toggleCancelOverlay()">Cancel Appointment</button>
+            <p>You have an appointment booked for <strong>${appointments[0].date}</strong>.</p>
+            <button onclick="toggleOverlay('cancel-overlay')">Cancel Appointment</button>
         `;
     } else {
         statusDiv.innerHTML = `
             <p>You have no appointments booked.</p>
-            <button onclick="bookAppointment()">Book Appointment</button>
+            <a href="../Student Data/stu_data.html" class="btn">Book Appointment</a>
         `;
     }
 }
 
-// Simulate booking an appointment
-function bookAppointment() {
-    appointmentBooked = true;
-    updateAppointmentStatus();
+function showNotification(message, type = 'success') {
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.className = `notification ${type}`;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.classList.add('show');
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                document.body.removeChild(notification);
+            }, 300);
+        }, 3000);
+    }, 100);
 }
 
-// Initialize status on page load
-document.addEventListener('DOMContentLoaded', updateAppointmentStatus);
+function updateAppointmentsTable() {
+    const tbody = document.querySelector('#appointmentsTable tbody');
+    tbody.innerHTML = '';
+    appointments.forEach(app => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${app.date}</td>
+            <td>${app.symptoms}</td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateAppointmentStatus();
+    updateAppointmentsTable();
+});
+
+// Check for new appointment data in localStorage
+window.addEventListener('storage', function(e) {
+    if (e.key === 'newAppointment') {
+        const newAppointment = JSON.parse(e.newValue);
+        appointments.unshift(newAppointment);
+        appointmentBooked = true;
+        updateAppointmentStatus();
+        updateAppointmentsTable();
+        showNotification('New appointment booked successfully', 'success');
+        localStorage.removeItem('newAppointment');
+    }
+});
