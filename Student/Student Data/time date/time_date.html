@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Slots</title>
+    <link rel="stylesheet" href="time_date.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Available Slots</h1>
+       
+        <!-- Date Scroll Bar -->
+        <div class="date-scrollbar" id="date-scrollbar">
+            <!-- Date items will be dynamically inserted here -->
+        </div>
+        
+        <div class="slots">
+            <h2>Morning</h2>
+            <div class="slot-grid" id="morning-slots"></div>
+            <h2>Afternoon</h2>
+            <div class="slot-grid" id="afternoon-slots"></div>
+            <h2>Evening</h2>
+            <div class="slot-grid" id="evening-slots"></div>
+            <h2>Night</h2>
+            <div class="slot-grid" id="night-slots"></div>
+        </div>
+
+        <!-- Confirm Button -->
+        <button id="confirm-appointment" class="confirm-button">Confirm Appointment</button>
+    </div>
+    <script src="time_date.js"></script>
+</body>
+</html>
