@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Appointment Booking</title>
+    <link rel="stylesheet" href="stu_data.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Doctor Appointment Booking</h2>
+        <form id="appointmentForm">
+            <div class="input-group" data-unit="years">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required min="1" max="120">
+            </div>
+            <div class="input-group" data-unit="kg">
+                <label for="weight">Weight:</label>
+                <input type="number" id="weight" name="weight" required min="1" max="500">
+            </div>
+            <div class="input-group" data-unit="°C">
+                <label for="temperature">Temperature:</label>
+                <input type="number" id="temperature" name="temperature" step="0.1" required min="35" max="42">
+            </div>
+            <div class="input-group">
+                <label for="symptoms">Symptoms:</label>
+                <textarea id="symptoms" name="symptoms" rows="4" required></textarea>
+            </div>
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+    <script src="stu_data.js"></script>
+</body>
+</html>
