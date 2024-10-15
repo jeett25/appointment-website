@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="rev_app.css">
+</head>
+<body>
+    <header>
+        <h1>Dr. Zeus's Appointment Dashboard</h1>
+        <div class="profile-icon" onclick="toggleProfileOverlay()">👤</div>
+    </header>
+
+    <!-- Profile Overlay -->
+    <div id="profile-overlay" class="overlay">
+        <div class="overlay-content">
+            <h2>Doctor Profile</h2>
+            <p><strong>Name:</strong> Dr. Zeus</p>
+            <p><strong>Specialization:</strong> Pediatrics</p>
+            <p><strong>Experience:</strong> 10 years</p>
+            <button onclick="toggleProfileOverlay()">Close</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="block">
+            <div class="date-scrollbar" id="date-scrollbar">
+                <!-- Date items will be dynamically inserted here -->
+            </div>
+            <table id="appointmentsTable">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Time Slot</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Appointments will be dynamically added here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="rev_app.js"></script>
+</body>
+</html>
