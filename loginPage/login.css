@@ -1,0 +1,137 @@
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #f5a623;
+    --background-color: #f0f4f8;
+    --text-color: #333;
+    --input-background: #ffffff;
+    --input-border: #d1d1d1;
+    --button-hover: #357abd;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    transition: background-color 0.3s ease;
+}
+
+.login-container {
+    background-color: var(--input-background);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.input-box {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 0.75rem;
+    border: 1px solid var(--input-border);
+    border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    flex: 1;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:first-child {
+    background-color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.btn:last-child {
+    background-color: var(--secondary-color);
+    margin-left: 0.5rem;
+}
+
+.btn:hover {
+    background-color: var(--button-hover);
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        padding: 1.5rem;
+    }
+
+    .button-container {
+        flex-direction: column;
+    }
+
+    .btn {
+        margin: 0.5rem 0;
+    }
+
+    .btn:first-child {
+        margin-right: 0;
+    }
+
+    .btn:last-child {
+        margin-left: 0;
+    }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: #64b5f6;
+        --secondary-color: #ffd54f;
+        --background-color: #1a1a1a;
+        --text-color: #ffffff;
+        --input-background: #2c2c2c;
+        --input-border: #444444;
+        --button-hover: #1e88e5;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        color: var(--text-color);
+    }
+}
