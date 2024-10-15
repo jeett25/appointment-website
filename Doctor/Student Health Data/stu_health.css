@@ -1,3 +1,16 @@
+:root {
+    --primary-color: #8E4585;
+    --secondary-color: #5D4157;
+    --accent-color: #B33771;
+    --text-color: #333;
+    --light-grey: #f0f0f0;
+    --medium-grey: #d0d0d0;
+    --dark-grey: #808080;
+    --border-color: #ccc;
+    --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     display: flex;
@@ -5,25 +18,26 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, var(--light-grey) 0%, var(--medium-grey) 100%);
 }
 
 .card {
-    background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+    background: linear-gradient(to bottom right, #ffffff, var(--light-grey));
     border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow);
     padding: 30px;
     width: 350px;
-    transition: transform 0.3s ease;
+    transition: var(--transition);
 }
 
 .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
 }
 
 h2 {
     margin-top: 0;
-    color: #333;
+    color: var(--primary-color);
     text-align: center;
     font-size: 24px;
     margin-bottom: 20px;
@@ -35,7 +49,7 @@ h2 {
 
 .label {
     font-weight: bold;
-    color: #555;
+    color: var(--secondary-color);
 }
 
 .buttons {
@@ -51,18 +65,17 @@ button {
     cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    transition: all 0.3s ease;
+    transition: var(--transition);
     text-transform: uppercase;
+    color: white;
 }
 
 #confirmBtn {
-    background: linear-gradient(to right, #4CAF50, #45a049);
-    color: white;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
 }
 
 #prioritizeBtn {
-    background: linear-gradient(to right, #f44336, #da190b);
-    color: white;
+    background: linear-gradient(to right, var(--accent-color), var(--primary-color));
 }
 
 #confirmBtn:hover, #prioritizeBtn:hover {

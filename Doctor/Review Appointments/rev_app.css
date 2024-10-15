@@ -1,9 +1,13 @@
 :root {
-    --primary-gradient: linear-gradient(135deg, #3498db, #2980b9);
-    --secondary-gradient: linear-gradient(135deg, #2ecc71, #27ae60);
+    --primary-color: #8E4585;
+    --secondary-color: #5D4157;
+    --accent-color: #B33771;
     --text-color: #333;
-    --border-color: #ddd;
-    --overlay-bg: rgba(0, 0, 0, 0.7);
+    --light-grey: #f0f0f0;
+    --medium-grey: #d0d0d0;
+    --dark-grey: #808080;
+    --border-color: #ccc;
+    --overlay-bg: rgba(93, 65, 87, 0.7);
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     --card-bg: rgba(255, 255, 255, 0.9);
     --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -11,7 +15,7 @@
 
 body {
     font-family: 'Roboto', 'Arial', sans-serif;
-    background: linear-gradient(135deg, #f6f9fc, #e9f2f9);
+    background: linear-gradient(135deg, var(--light-grey), var(--medium-grey));
     color: var(--text-color);
     margin: 0;
     padding: 0;
@@ -20,7 +24,7 @@ body {
 }
 
 header {
-    background-image: var(--primary-gradient);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     padding: 2rem 1.5rem;
     display: flex;
@@ -78,10 +82,10 @@ main {
 }
 
 h3 {
-    color: #2c3e50;
+    color: var(--primary-color);
     font-size: 1.5rem;
     font-weight: 600;
-    border-bottom: 2px solid #3498db;
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
     transition: var(--transition);
@@ -105,7 +109,7 @@ th, td {
 }
 
 th {
-    background-image: var(--primary-gradient);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     font-weight: 600;
 }
@@ -115,16 +119,16 @@ tr {
 }
 
 tr:nth-child(even) {
-    background-color: rgba(52, 152, 219, 0.1);
+    background-color: var(--light-grey);
 }
 
 tr:hover {
-    background-color: rgba(52, 152, 219, 0.2);
+    background-color: var(--medium-grey);
     transform: scale(1.02);
 }
 
 button {
-    background-image: var(--secondary-gradient);
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -197,7 +201,7 @@ button:hover {
 }
 
 .overlay-content {
-    background: linear-gradient(to bottom right, #ffffff, #f0f3f5);
+    background: linear-gradient(to bottom right, #ffffff, var(--light-grey));
     padding: 2.5rem;
     border-radius: 12px;
     max-width: 450px;
@@ -217,10 +221,10 @@ button:hover {
     overflow-x: auto;
     padding: 15px 0;
     margin-bottom: 20px;
-    background: linear-gradient(to right, #e0eafc, #cfdef3);
+    background: linear-gradient(to right, var(--light-grey), var(--medium-grey));
     border-radius: 15px;
     scrollbar-width: thin;
-    scrollbar-color: #007bff #e0eafc;
+    scrollbar-color: var(--accent-color) var(--light-grey);
     box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
     transition: var(--transition);
 }
@@ -230,12 +234,12 @@ button:hover {
 }
 
 .date-scrollbar::-webkit-scrollbar-thumb {
-    background-color: #007bff;
+    background-color: var(--accent-color);
     border-radius: 4px;
 }
 
 .date-scrollbar::-webkit-scrollbar-track {
-    background-color: #e0eafc;
+    background-color: var(--light-grey);
 }
 
 .date-button {
@@ -245,7 +249,7 @@ button:hover {
     min-width: 120px;
     padding: 15px 10px;
     margin-right: 15px;
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
     border: none;
     border-radius: 10px;
@@ -257,7 +261,7 @@ button:hover {
 .date-button span {
     font-size: 0.8em;
     margin-top: 8px;
-    color: #e0e0e0;
+    color: var(--light-grey);
     transition: var(--transition);
 }
 
@@ -267,7 +271,7 @@ button:hover {
 }
 
 .date-button.active {
-    background: var(--secondary-gradient);
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
     transform: translateY(-4px) scale(1.1);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
