@@ -27,6 +27,7 @@ for (let i = 0; i < 7; i++) {
 }
 
 let currentDayIndex = 0;
+let selectedTimeSlot = null;
 
 // Dynamically generate the date buttons
 function createDateButtons() {
@@ -37,17 +38,26 @@ function createDateButtons() {
         const button = document.createElement('button');
         button.classList.add('date-button');
         if (index === currentDayIndex) {
-            button.classList.add('active');
+            button.classList.add('active', 'orange');
         }
         button.innerHTML = `${day.label} <span>${getAvailableSlotsText(index)}</span>`;
         button.addEventListener('click', () => changeDay(index));
         dateScrollbar.appendChild(button);
     });
 }
+
+// Function to calculate available slots text
+function getAvailableSlotsText(dayIndex) {
+    const slots = slotData[dayIndex];
+    const totalSlots = slots.morning + slots.afternoon + slots.evening + slots.night;
+    return `${totalSlots} slots available`;
+}
+
 function changeDay(index) {
     currentDayIndex = index;
     updateDateButtons();
     loadSlots();
+    selectedTimeSlot = null; // Reset selected time slot when changing day
 }
 
 function updateDateButtons() {
@@ -60,27 +70,8 @@ function updateDateButtons() {
         }
     });
 }
-// Function to calculate available slots text
-function getAvailableSlotsText(dayIndex) {
-    const slots = slotData[dayIndex];
-    const totalSlots = slots.morning + slots.afternoon + slots.evening + slots.night;
-    return `${totalSlots} slots available`;
-}
 
-function changeDay(index) {
-    currentDayIndex = index;
-    updateDateButtons();
-    loadSlots();
-}
-
-function updateDateButtons() {
-    const buttons = document.querySelectorAll('.date-button');
-    buttons.forEach((button, index) => {
-        button.classList.toggle('active', index === currentDayIndex);
-    });
-}
-
-// Load time slots (This can be adjusted based on date-specific data)
+// Load time slots
 function loadSlots() {
     const slots = slotData[currentDayIndex];
 
@@ -101,22 +92,33 @@ function renderSlots(id, slots) {
     slots.forEach(slot => {
         const button = document.createElement('button');
         button.textContent = slot;
+        button.addEventListener('click', () => selectTimeSlot(button));
         container.appendChild(button);
     });
+}
+
+function selectTimeSlot(button) {
+    // Remove the 'selected' class from the previously selected button
+    if (selectedTimeSlot) {
+        selectedTimeSlot.classList.remove('selected');
+    }
+
+    // Add the 'selected' class to the clicked button
+    button.classList.add('selected');
+    selectedTimeSlot = button;
 }
 
 // Initialize the page with default content
 createDateButtons();
 loadSlots();
-function changeDay(index) {
-    currentDayIndex = index;
-    updateDateButtons();  // Updates which button is active
-    loadSlots();          // Load the respective time slots
-}
 
-function updateDateButtons() {
-    const buttons = document.querySelectorAll('.date-button');
-    buttons.forEach((button, index) => {
-        button.classList.toggle('active', index === currentDayIndex);  // Apply 'active' to the clicked button
-    });
-}
+// Add this to your existing CSS file
+const style = document.createElement('style');
+style.textContent = `
+    .slot-grid button.selected {
+        background: linear-gradient(135deg, #ff8c00, #ff6347);
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    }
+`;
+document.head.appendChild(style);
