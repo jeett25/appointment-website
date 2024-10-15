@@ -13,7 +13,7 @@ function updateAppointmentsTable() {
         row.innerHTML = `
             <td>${appointment.name}</td>
             <td>${appointment.time}</td>
-            <td><button onclick="viewStudentDetails(${index})">View Details</button></td>
+            <td><a href = '../Student Health Data/stu_health.html'><button onclick="viewStudentDetails(${index})">View Details</button></a></td>
         `;
         tbody.appendChild(row);
     });
