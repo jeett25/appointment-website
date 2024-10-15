@@ -108,6 +108,25 @@ function selectTimeSlot(button) {
     selectedTimeSlot = button;
 }
 
+document.getElementById('confirm-appointment').addEventListener('click', () => {
+    if (!selectedTimeSlot) {
+        alert("Please select a time slot before confirming!");
+        return;
+    }
+    
+    // Get selected date and time
+    const selectedDate = days[currentDayIndex].label; // Label could be "Today", "Tomorrow", or a specific date
+    const selectedTime = selectedTimeSlot.textContent; // Time slot selected
+    
+    // Store in localStorage
+    localStorage.setItem('selectedDate', selectedDate);
+    localStorage.setItem('selectedTime', selectedTime);
+    
+    // Notify user (you can redirect or provide further actions if needed)
+    alert(`Appointment confirmed for ${selectedDate} at ${selectedTime}`);
+});
+
+
 // Initialize the page with default content
 createDateButtons();
 loadSlots();
