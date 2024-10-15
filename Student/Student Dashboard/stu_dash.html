@@ -4,8 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard</title>
+    <link rel="stylesheet" href="stu_dash.css">
 </head>
 <body>
-    
+    <header>
+        <h1>Zeus's Healing Ledger</h1>
+        <div class="profile-icon" onclick="toggleProfileOverlay()">👤</div>
+    </header>
+
+    <!-- Profile Overlay -->
+    <div id="profile-overlay" class="overlay">
+        <div class="overlay-content">
+            <h2>Student Profile</h2>
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Health Info:</strong> Healthy, no known allergies.</p>
+            <button onclick="toggleProfileOverlay()">Close</button>
+        </div>
+    </div>
+
+    <main>
+        <section class="block">
+            <h3>Prior Appointments</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Symptoms</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2024-08-10</td>
+                        <td>Fever, Cough</td>
+                    </tr>
+                    <tr>
+                        <td>2024-07-22</td>
+                        <td>Headache, Dizziness</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="block">
+            <h3>Your Current Status</h3>
+            <div id="appointment-status">
+                <!-- Status will be updated via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Cancel Appointment Overlay -->
+    <div id="cancel-overlay" class="overlay">
+        <div class="overlay-content">
+            <h2>Cancel Appointment</h2>
+            <p>Please provide a reason for cancellation:</p>
+            <textarea id="cancel-reason" rows="4" placeholder="Enter your reason..."></textarea>
+            <button onclick="submitCancellation()">Submit</button>
+            <button onclick="toggleCancelOverlay()">Close</button>
+        </div>
+    </div>
+
+    <script src="stu_dash.js"></script>
 </body>
 </html>
