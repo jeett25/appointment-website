@@ -11,15 +11,20 @@
 body {
     font-family: 'Arial', sans-serif;
     background-color: var(--background-color);
+    background-position-y: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
     transition: background-color 0.3s ease;
-}
+    background-image: url('/bg.jpeg');
+    background-repeat: no-repeat;
+    background-size: 100%;}
 
 .login-container {
+    background-image: url('/bg.jpeg');
+    background-blend-mode: lighten;
     background-color: var(--input-background);
     padding: 2rem;
     border-radius: 8px;
@@ -53,6 +58,7 @@ input[type="password"] {
     border-radius: 4px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    color: black;
 }
 
 input[type="text"]:focus,
@@ -132,6 +138,7 @@ input[type="password"]:focus {
 
     input[type="text"],
     input[type="password"] {
-        color: var(--text-color);
+        color: black;
+        
     }
 }

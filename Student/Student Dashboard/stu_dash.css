@@ -18,7 +18,10 @@ body {
     padding: 0;
     line-height: 1.6;
 }
-
+a{
+    text-decoration: none;
+    color: white;
+}
 header {
     background-image: var(--primary-gradient);
     color: white;

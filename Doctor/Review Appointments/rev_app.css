@@ -22,6 +22,10 @@ body {
     line-height: 1.6;
     transition: var(--transition);
 }
+a{
+    text-decoration: none;
+    color: white;
+}
 
 header {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
